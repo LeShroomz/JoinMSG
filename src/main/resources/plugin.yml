@@ -4,3 +4,10 @@ main: dev.trixxie.joinmsg.Joinmsg
 api-version: 1.18
 authors: [ Trixxie ]
 description: Welcome new players and old players to server
+commands:
+  joinmsg:
+    usage: /<command>
+    description: Reload plugin's config.yml file
+    aliases:
+      - jmsg
+      - jm

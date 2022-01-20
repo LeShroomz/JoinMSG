@@ -1,6 +1,6 @@
 #
 #     JoinMSG by Trixxie
-#     https://github.com/NotTrixxie/JoinMSG.git
+#     https://github.com/NotTrixxie/JoinMSG
 #
 #     You can use placeholder %player% to display their name
 #
@@ -13,8 +13,20 @@ quit-message: "&c%player% has left the server :("
 
 # You must use sounds found in https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
 # Remember that some of these sounds do not work on older versions of Minecraft.
-join-sound: BLOCK_CONDUIT_ACTIVATE
+join-sound:
+  enabled: true
+  sound: BLOCK_CONDUIT_ACTIVATE
 
 join-fireworks:
   enabled: true
   amount: 3
+
+join-message-title:
+  enabled: true
+  title: "&6Welcome to the server!"
+  subtitle: "&eHope you are having great day"
+  fadeIn: 2
+  stay: 10
+  fadeOut: 3
+
+# FadeIn, stay and fadeOut are all seconds

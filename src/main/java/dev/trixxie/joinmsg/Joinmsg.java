@@ -1,6 +1,7 @@
 package dev.trixxie.joinmsg;
 
 import com.tchristofferson.configupdater.ConfigUpdater;
+import dev.trixxie.joinmsg.Commands.generalCommand;
 import dev.trixxie.joinmsg.Events.PlayerConnections;
 import dev.trixxie.joinmsg.Utils.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,6 +30,9 @@ public final class Joinmsg extends JavaPlugin {
         Metrics metrics = new Metrics(this);
 
         getServer().getPluginManager().registerEvents(new PlayerConnections(), this);
+
+        //COMMANDS
+        this.getCommand("joinmsg").setExecutor(new generalCommand());
 
     }
 

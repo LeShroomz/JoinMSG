@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class PlayerConnections implements Listener {
@@ -35,10 +36,28 @@ public class PlayerConnections implements Listener {
         String s = plugin.getConfig().getString("join-message");
         if(!s.equalsIgnoreCase("none")) {
             String joinMsg = s.replace("%player%", p.getName());
-            e.setJoinMessage(joinMsg);
-            p.playSound(p.getLocation(), Sound.valueOf(plugin.getConfig().getString("join-sound")), 2F, 1F);
+            e.setJoinMessage(ChatColor.translateAlternateColorCodes('&', joinMsg));
+            if(plugin.getConfig().getBoolean("join-sound.enabled")){
+                p.playSound(p.getLocation(), Sound.valueOf(plugin.getConfig().getString("join-sound.sound")), 2F, 1F);
+            }
             if(plugin.getConfig().getBoolean("join-fireworks.enabled")){
                 spawnFireworks(p, plugin.getConfig().getInt("join-fireworks.amount"));
+            }
+        }
+        if(plugin.getConfig().getBoolean("join-message-title.enabled")){
+            if(plugin.getConfig().getString("join-message-title.title") != null && plugin.getConfig().getString("join-message-title.subtitle") != null){
+                new BukkitRunnable(){ //probs dont need run later?
+                    @Override
+                    public void run() {
+                        //stupidly long thing below, but works lol
+                        p.sendTitle(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("join-message-title.title")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("join-message-title.subtitle")), plugin.getConfig().getInt("join-message-title.fadeIn") * 20, plugin.getConfig().getInt("join-message-title.stay") * 20, plugin.getConfig().getInt("join-message-title.fadeOut") * 20);
+                    }
+                }.runTaskLater(plugin, 3);
+            } else {
+                System.out.println("JoinMSG title or/and subtitle configuration has been setup incorrectly!!!");
+                if(p.isOp()){
+                    p.sendMessage(ChatColor.RED + "JoinMSG title or/and subtitle configuration has been setup incorrectly!!!");
+                }
             }
         }
     }
@@ -49,7 +68,7 @@ public class PlayerConnections implements Listener {
         String s = plugin.getConfig().getString("join-message");
         if(!s.equalsIgnoreCase("none")) {
             String quitMsg = s.replace("%player%", p.getName());
-            e.setQuitMessage(quitMsg);
+            e.setQuitMessage(ChatColor.translateAlternateColorCodes('&', quitMsg));
         }
     }
 
