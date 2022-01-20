@@ -1,0 +1,20 @@
+#
+#     JoinMSG by Trixxie
+#     https://github.com/NotTrixxie/JoinMSG.git
+#
+#     You can use placeholder %player% to display their name
+#
+
+# If you don't want join, quit or first join message to be sent replace the string with "none"
+# join-message: "none"
+first-join-message: "&6Welcome new member, %player%!"
+join-message: "&a%player% has joined the server :)"
+quit-message: "&c%player% has left the server :("
+
+# You must use sounds found in https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+# Remember that some of these sounds do not work on older versions of Minecraft.
+join-sound: BLOCK_CONDUIT_ACTIVATE
+
+join-fireworks:
+  enabled: true
+  amount: 3

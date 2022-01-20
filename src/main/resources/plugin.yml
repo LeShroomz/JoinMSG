@@ -1,0 +1,6 @@
+name: JoinMSG
+version: '${project.version}'
+main: dev.trixxie.joinmsg.Joinmsg
+api-version: 1.18
+authors: [ Trixxie ]
+description: Welcome new players and old players to server
