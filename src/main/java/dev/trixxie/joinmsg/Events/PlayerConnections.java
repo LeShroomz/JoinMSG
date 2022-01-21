@@ -65,7 +65,7 @@ public class PlayerConnections implements Listener {
     @EventHandler
     public void playerQuit(PlayerQuitEvent e){
         Player p = e.getPlayer();
-        String s = plugin.getConfig().getString("join-message");
+        String s = plugin.getConfig().getString("quit-message");
         if(!s.equalsIgnoreCase("none")) {
             String quitMsg = s.replace("%player%", p.getName());
             e.setQuitMessage(ChatColor.translateAlternateColorCodes('&', quitMsg));
